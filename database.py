@@ -60,12 +60,11 @@ def update_transaction(transaction_id, description, amount, category, transactio
                     (description, amount, category, transaction_type, transaction_id)
                 )
                 if cur.rowcount == 0:
-                    print("Nenhuma transação encontrada com o ID fornecido.")
                     return False
                 return True
     except psycopg.Error as error:
         print("Erro ao atualizar transação", error)
-        return False
+        return None
 
 def delete_transaction(transaction_id):
   try:
@@ -81,5 +80,5 @@ def delete_transaction(transaction_id):
           return True
   except psycopg.Error as error:
         print("Erro ao deletar transação", error)
-        return False
+        return None
 
